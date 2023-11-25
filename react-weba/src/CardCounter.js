@@ -48,6 +48,32 @@ class CardCounterPage extends React.Component {
     // For now, we'll just return a placeholder
     return "Advice: Stand";
   };
+ 
+  calculateResult = (event) => {
+    event.preventDefault();
+    alert(this.getAdvice());
+}
+  calculateResult = () => {
+    const playerTotal = parseInt(this.state.playerTotal);
+    const dealerCard = parseInt(this.state.dealerCard);
+  
+    if (playerTotal >= 17) {
+      return "Stand";
+    } else if (playerTotal <= 11) {
+      if (playerTotal === 11 && dealerCard !== 1) {
+        return "Double if allowed, otherwise Hit";
+      }
+      return "Hit";
+    } else { // Player total is between 12 and 16
+      if (dealerCard >= 7 || dealerCard === 1) {
+        return "Hit";
+      } else {
+        return "Stand";
+      }
+    }
+    
+  };
+   
 
 render() {
     const cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
@@ -123,13 +149,13 @@ render() {
             </form>
             <p>{this.getAdvice()}</p>
             <div className="button-container">
-                {cards.map((card) => (
-                    <button
-                        key={card}
-                        onClick={() => this.handleCardClick(cardValues[card.toString()])}
+            {cards.map((card) => (
+                <button
+                    key={card}
+                    onClick={() => this.handleCardClick(cardValues[card.toString()])}
                     >
-                        {card}
-                    </button>
+                    {card}
+                </button>
                 ))}
             </div>
         </div>

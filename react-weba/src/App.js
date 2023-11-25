@@ -2,6 +2,8 @@ import React from 'react';
 import HistoryPage from './HistoryPage';
 import HowToPlayPage from './HowToPlayPage';
 import CardCounterPage from './CardCounter';
+import BasicStrategyPage from './BasicStrategy';
+
 import './App.css';
 
 class App extends React.Component {
@@ -24,7 +26,10 @@ class App extends React.Component {
                 pageComponent = <HowToPlayPage />;
                 break;
             case 'card-counter':
-                pageComponent = <CardCounterPage />;
+                pageComponent = <CardCounterPage style={{ backgroundColor: 'blue', color: 'white' }} />;
+                break;
+            case 'basic-strategy':
+                pageComponent = <BasicStrategyPage />;
                 break;
             default:
                 pageComponent = <div>Welcome to Home Page</div>;
@@ -38,12 +43,17 @@ class App extends React.Component {
                         <li onClick={() => this.setPage('history')}>History</li>
                         <li onClick={() => this.setPage('how-to-play')}>How to Play</li>
                         <li onClick={() => this.setPage('card-counter')}>Card Counter</li>
+                        <li onClick={() => this.setPage('basic-strategy')}>Basic Strategy</li>
                     </ul>
                 </nav>
                 {pageComponent}
             </div>
         );
-    }
+        }
+    
 }
+
+
+
 
 export default App;
