@@ -1,7 +1,7 @@
 
 
 
-
+import basicStrat from "../src/BasicStrat.jpg"
 import React from 'react';
 import './App.css';
 
@@ -9,7 +9,7 @@ class HistoryPage extends React.Component {
     render() {
         return (
             <div className="image-container">
-                <img src='C:\Users\Jk4li\react-web\react-weba\src\BasicStrat.jpg' alt="BjStrats" />
+                <img src={basicStrat} alt="None" />
             </div>
         );
     }

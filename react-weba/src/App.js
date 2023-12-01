@@ -1,59 +1,51 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HistoryPage from './HistoryPage';
 import HowToPlayPage from './HowToPlayPage';
 import CardCounterPage from './CardCounter';
 import BasicStrategyPage from './BasicStrategy';
-
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { page: 'home' };
-    }
-
-    setPage = (page) => {
-        this.setState({ page });
-    }
-
-    render() {
-        let pageComponent;
-        switch (this.state.page) {
-            case 'history':
-                pageComponent = <HistoryPage />;
-                break;
-            case 'how-to-play':
-                pageComponent = <HowToPlayPage />;
-                break;
-            case 'card-counter':
-                pageComponent = <CardCounterPage style={{ backgroundColor: 'blue', color: 'white' }} />;
-                break;
-            case 'basic-strategy':
-                pageComponent = <BasicStrategyPage />;
-                break;
-            default:
-                pageComponent = <div>Welcome to Home Page</div>;
-        }
-
-        return (
-            <div>
-                <nav>
-                    <ul className="menu">
-                        <li onClick={() => this.setPage('home')}>Home</li>
-                        <li onClick={() => this.setPage('history')}>History</li>
-                        <li onClick={() => this.setPage('how-to-play')}>How to Play</li>
-                        <li onClick={() => this.setPage('card-counter')}>Card Counter</li>
-                        <li onClick={() => this.setPage('basic-strategy')}>Basic Strategy</li>
-                    </ul>
-                </nav>
-                {pageComponent}
-            </div>
-        );
-        }
-    
-}
-
-
-
+const App = () => {
+    return (
+        <Router>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#">Everything Blackjack</a>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <Link className="btn btn-primary" to="/">Home</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="btn btn-primary" to="/history">History</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="btn btn-primary" to="/how-to-play">How to Play</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="btn btn-primary" to="/card-counter">Card Counter</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="btn btn-primary" to="/basic-strategy">Basic Strategy</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <Routes>
+                <Route path="/" element={<div>Welcome to Home Page</div>} />
+                <Route path="/history" element={<HistoryPage />} />
+                <Route path="/how-to-play" element={<HowToPlayPage />} />
+                <Route path="/card-counter" element={<CardCounterPage />} />
+                <Route path="/basic-strategy" element={<BasicStrategyPage />} />
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;

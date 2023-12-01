@@ -7,21 +7,25 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "black": "^0.3.0",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0",
     "react-scripts": "5.0.1",
+    "Router": "^2.1.0",
+    "switch": "^0.0.0",
+    "vite": "^5.0.2",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.21"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "vite", 
-    "build": "vite build", 
-    "serve": "vite preview" 
+    "dev": "vite",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +46,6 @@
     ]
   },
   "devDependencies": {
-    "vite": "^5.0.2"
+    "react-router-dom": "^6.20.0"
   }
 }

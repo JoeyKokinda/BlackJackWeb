@@ -41,22 +41,10 @@ body {
   background-color: #555;
 }
 
-/* Container for button alignment */
-.button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Style for buttons */
-/* ... (Your button styles here) ... */
-
 .button:hover {
   background-color: #555;
 }
 
-/* Content styling */
 .content {
   padding: 20px;
   max-width: 800px;
@@ -72,21 +60,21 @@ body {
   line-height: 1.6;
 }
 
-/* Counter card styles */
-.card-counter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Align items to the top */
-  min-height: 100vh;
-  padding: 10px;
+.card-button-container {
+  color: pink;
 }
 
-/* Button styling in card-counter */
+.card-counter {
+  display: inline-block;
+  justify-content: start; 
+  min-height: 100vh;
+  padding: 30px;
+}
+
 .card-counter button {
   font-size: 20px;
   padding: 10px 20px;
-  margin: 10px; /* Adjusted margin for better spacing */
+  margin: 10px; 
   border: none;
   border-radius: 5px;
   background-color: #007bff;
@@ -99,29 +87,34 @@ body {
   background-color: #0056b3;
 }
 
-/* Button container in different contexts */
 .card-counter .button-container,
 .Your-Total .button-container {
-  display: grid;
-  gap: 35px; /* Adjusted gap for consistent spacing */
+  display: box;
+  gap: 35px;
   justify-items: center;
   width: 100%;
 }
 
 .card-counter .button-container {
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: 60px 60px;
 }
 
 .Your-Total .button-container {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 60px 60px;
 }
 
 .input-container {
   display: flex;
-  justify-content: center; /* Center the containers on the page */
-  align-items: center; /* Align items vertically */
-  margin: 20px 0; /* Add some space above and below */
-  gap: 20px; /* Space between the two input boxes */
+  justify-content: center; 
+  align-items: center;
+  margin: 20px 0; 
+  gap: 20px; 
+}
+
+.calculate-button {
+  height: 40px;
+  width: 100px;
+  color: pink;
 }
 
 form > div:first-child {
@@ -136,36 +129,32 @@ form > div:first-child {
   margin: 0 10px;
 }
 .input-wrapper {
-  background-color: #000; /* Black background */
-  padding: 10px; /* Padding around the text */
-  border-radius: 5px; /* Rounded corners for the boxes */
+  background-color: #000; 
+  padding: 10px; 
+  border-radius: 5px; 
 }
 
-/* You may need to add a class or an id to the individual inputs or their labels 
-to target them specifically if they are not yet wrapped */
 .input-wrapper input,
 .input-wrapper label {
-  background-color: #fff; /* White background for input */
-  color: #000; /* Black text for readability */
-  padding: 5px 10px; /* Padding inside the input */
-  margin: 0; /* Remove any default margin */
-  border: none; /* Remove border */
-  display: block; /* Ensure inputs take the full width of the wrapper */
+  background-color: #fff; 
+  color: #000; 
+  padding: 5px 10px; 
+  margin: 0; 
+  border: none; 
+  display: block; 
 }
 
-/* If inputs are not wrapped, directly style the inputs */
 .input-container input {
-  background-color: #fff; /* White background for input */
-  color: #000; /* Black text for readability */
-  padding: 5px 10px; /* Padding inside the input */
-  margin: 0; /* Remove any default margin */
-  border: 2px solid #000; /* Black border for the input */
+  background-color: #fff; 
+  color: #000; 
+  padding: 5px 10px; 
+  margin: 0; 
+  border: 2px solid #000; 
 }
 
-/* Adjustments for the 'Calculate' button to align it properly */
 .calculate-button {
-  align-self: start; /* Align button to the start of the flex item */
-  margin-top: 10px; /* Or adjust as needed to align with the input boxes */
+  align-self: start; 
+  margin-top: 10px; 
 }
 
 /* HISTORY PAGE */
@@ -177,35 +166,30 @@ to target them specifically if they are not yet wrapped */
 
 .history-page h1 {
   font-size: 2.2em;
-  color: #ffffff;
-  margin-bottom: 20px;
+  color: #000000;
+  margin-bottom: 50px;
+  margin-top: -30px;
 }
 
 .history-page h2 {
   font-size: 1.8em;
-  margin-top: 20px;
+  margin-top: -10px;
   color: #000000;
-}
-
-.history-content h3 {
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: #ffffff;
-  margin-bottom: 15px;
 }
 
 .history-bubble {
   background-color: #f9f9f9;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  border-radius: 40px;
+  padding: 50px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
   position: relative;
+  width: calc(100% - 100px);
 }
 
 .history-bubble:before {
   content: '';
-  position: absolute;
+  position: center;
   top: 50%;
   left: -10px;
   width: 0; 
@@ -215,3 +199,15 @@ to target them specifically if they are not yet wrapped */
   border-right:10px solid #f9f9f9; 
   transform: translateY(-50%);
 }
+
+
+.dealer-input-box {
+  width: 200px;
+  height: 35px; 
+}
+
+.player-input-box {
+  width: 200px;
+  height: 35px;
+}
+
