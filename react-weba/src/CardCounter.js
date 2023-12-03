@@ -115,12 +115,9 @@ function CardCounterPage() {
         </div>
       <div className="calc-button">
         <label>
-        <button 
-        Calculate
-        onClick={calculateResult}
-        className="calculate-button"
-       />
-       </label>
+          Calculate
+          <button onClick={calculateResult} className="calculate-button" />
+        </label>
       </div>
       </form>
       
