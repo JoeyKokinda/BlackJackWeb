@@ -1,7 +1,7 @@
 
 
 
-import basicStratPic from "../src/BasicStrat.jpg"
+import basicStratPic from './BasicStrat.jpg'
 import React from 'react';
 import './App.css';
 

@@ -77,63 +77,35 @@ function CardCounterPage() {
 
   return (
     <div className="card-counter">
-      <h1>Card Counter</h1>
-      <p>Count: {count}</p>
-      <p>Running Count: {runningCount}</p>
-      <p>Cards Remaining: {cardsRemaining}</p>
-      <p>Your action: {action}</p>
-      <form>
-        <div>
-          <label>
-            Shoes:
-            <input
-              type="number"
-              value={shoes}
-              onChange={handleShoesChange}
-            />
-          </label>
-        </div>
-        <div className="input-container">
-          <label>
-            Your Total:
-            <input
-              type="number"
-              value={playerTotal}
-              onChange={handlePlayerTotalChange}
-              className="player-input-box"
-            />
-          </label>
-          <label>
-            Dealer's Card:
-            <input
-              type="number"
-              value={dealerCard}
-              onChange={handleDealerCardChange}
-              className="dealer-input-box"
-            />
-          </label>
-        </div>
-      <div className="calc-button">
-        <label>
-          Calculate
-          <button onClick={calculateResult} className="calculate-button" />
-        </label>
+      <h1 id="title">Card Counter</h1>
+      <div id="stats">
+        <p>Count: {count}</p>
+        <p>Running Count: {runningCount}</p>
+        <p>Cards Remaining: {cardsRemaining}</p>
+        <label for="shoes">Shoes:</label>
+        <input id="shoes"
+          type="number"
+          value={shoes}
+          onChange={handleShoesChange}
+        />
       </div>
-      </form>
-      
+          
         <div className="card-button-container">
           {cards.map((card) => (
-            <button
-              key={card}
-              onClick={() => handleCardClick(cardValues[card.toString()])}
-              className="card-button"
-            >
-              {card}
-            </button>
+              <>
+                <div key={card}>
+                  <button
+                    onClick={() => handleCardClick(cardValues[card.toString()])}
+                    className="card-button"
+                    id={card === 'A' ? 'ace' : null}
+                  >
+                    {card}
+                  </button>
+                </div>
+              </>
           ))}
         </div>
-        
-    </div>
-  );
-}
+        </div>
+        )
+  }
 export default CardCounterPage;
