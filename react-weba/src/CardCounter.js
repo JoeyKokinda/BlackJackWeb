@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 function CardCounterPage() {
   const [count, setCount] = useState(0);
@@ -9,53 +8,51 @@ function CardCounterPage() {
   const [playerTotal, setPlayerTotal] = useState("");
   const [dealerCard, setDealerCard] = useState("");
   const [action, setAction] = useState("");
+  const [trueCount, setTrueCount] = useState(0);
+  const [history, setHistory] = useState([]);
 
-  const handleCardClick = (value) => {
+  useEffect(() => {
+    setRunningCount(count);
+  }, [count]);
+
+  useEffect(() => {
+    setCardsRemaining(shoes * 52);
+  }, [shoes]);
+
+  useEffect(() => {
+    const decksRemaining = cardsRemaining / 52;
+    const calculatedTrueCount = Math.round(runningCount / decksRemaining);
+    setTrueCount(calculatedTrueCount); 
+  }, [runningCount, cardsRemaining]);
+
+  const handleCardClick = (value, card) => {
     setCount((prevCount) => prevCount + value);
-    setRunningCount((prevCount) => (prevCount + value) / shoes);
     setCardsRemaining((prevCardsRemaining) => prevCardsRemaining - 1);
+  
+    setHistory((prevHistory) => {
+      const newHistory = [card, ...prevHistory];
+      if (newHistory.length > 10) {
+        newHistory.pop(); // Remove the oldest entry if length exceeds 10
+      }
+      return newHistory;
+    });
+  };
+
+  const handleRemoveCard = (index) => {
+    const cardToRemove = history[index];
+    const valueToRemove = cardValues[cardToRemove.toString()];
+
+    setCount((prevCount) => prevCount - valueToRemove);
+    setCardsRemaining((prevCardsRemaining) => prevCardsRemaining + 1);
+    
+    setHistory((prevHistory) => [
+      ...prevHistory.slice(0, index),
+      ...prevHistory.slice(index + 1),
+    ]);
   };
 
   const handleShoesChange = (event) => {
-    const newShoes = event.target.value;
-    setShoes(newShoes);
-    setCardsRemaining(newShoes * 52);
-    setRunningCount(count / newShoes);
-  };
-
-  const handlePlayerTotalChange = (event) => {
-    setPlayerTotal(event.target.value);
-  };
-
-  const handleDealerCardChange = (event) => {
-    setDealerCard(event.target.value);
-  };
-
-  const getAdvice = () => {
-    return "Advice: Stand";
-  };
-
-  const calculateResult = (event) => {
-    event.preventDefault();
-
-    const parsedPlayerTotal = parseInt(playerTotal);
-    const parsedDealerCard = parseInt(dealerCard);
-
-    if (parsedPlayerTotal >= 17) {
-      setAction("Stand");
-    } else if (parsedPlayerTotal <= 11) {
-      if (parsedPlayerTotal === 11 && parsedDealerCard !== 1) {
-        setAction("Double if allowed, otherwise Hit");
-      } else {
-        setAction("Hit");
-      }
-    } else {
-      if (parsedDealerCard >= 7 || parsedDealerCard === 1) {
-        setAction("Hit");
-      } else {
-        setAction("Stand");
-      }
-    }
+    setShoes(event.target.valueAsNumber);
   };
 
   const cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
@@ -74,52 +71,50 @@ function CardCounterPage() {
     K: -1,
     A: -1,
   };
+
   return (
     <div className="card-counter">
-      <h1 id="title">‎ </h1>
+      <h1 id="title">Blackjack Card Counter</h1>
       <div className="container">
         <div className="card-button-container">
           {cards.map((card) => (
-            <>
-              <div key={card}>
-                <button
-                  onClick={() => handleCardClick(cardValues[card.toString()])}
-                  className="card-button"
-                  id={card === "A" ? "ace" : null}
-                >
-                  {card}
-                </button>
-              </div>
-            </>
+            <div key={card}>
+              <button className="card-counter-button" onClick={() => handleCardClick(cardValues[card.toString()], card)}>
+                {card}
+              </button>
+            </div>
           ))}
         </div>
         <div id="stats">
-        <label htmlFor="shoes">Shoes:</label>
-        <input
+          <label htmlFor="shoes">Shoes:</label>
+          <input
             id="shoes"
             type="number"
             value={shoes}
             onChange={handleShoesChange}
             className="shoes-input"
           />
-        <h2>Stats:</h2>
-          <p>Count: {count}</p>
-          <p>Running Count: {runningCount}</p>
+          <h2>Stats:</h2>
           <p>Cards Remaining: {cardsRemaining}</p>
-          
-          
-        </div>
-        </div>
-        <div className="right-side-content">
-        <h2>Card History:</h2>
-        <ul>
-          <p>HELLO WORLD!!!!</p>
-        </ul>
+          <p>Count: {count}</p>
+          <p>True Count: {trueCount}</p>
         </div>
       </div>
+      <div className="card-history">
+  <h2>Card History:</h2>
+  <ul>
+    {history.map((card, index) => (
+      <li key={`${card}-${index}`}>
+        {card} 
+        <button className="card-history-button" onClick={() => handleRemoveCard(index)}>
+          Remove
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+      </div>
   );
-    
-        
-        }
+}
 
 export default CardCounterPage;
