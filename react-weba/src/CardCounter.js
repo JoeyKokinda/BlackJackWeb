@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
 function CardCounterPage() {
   const [count, setCount] = useState(0);
@@ -74,38 +74,52 @@ function CardCounterPage() {
     K: -1,
     A: -1,
   };
-
   return (
     <div className="card-counter">
-      <h1 id="title">Card Counter</h1>
-      <div id="stats">
-        <p>Count: {count}</p>
-        <p>Running Count: {runningCount}</p>
-        <p>Cards Remaining: {cardsRemaining}</p>
-        <label for="shoes">Shoes:</label>
-        <input id="shoes"
-          type="number"
-          value={shoes}
-          onChange={handleShoesChange}
-        />
-      </div>
-          
+      <h1 id="title">‎ </h1>
+      <div className="container">
         <div className="card-button-container">
           {cards.map((card) => (
-              <>
-                <div key={card}>
-                  <button
-                    onClick={() => handleCardClick(cardValues[card.toString()])}
-                    className="card-button"
-                    id={card === 'A' ? 'ace' : null}
-                  >
-                    {card}
-                  </button>
-                </div>
-              </>
+            <>
+              <div key={card}>
+                <button
+                  onClick={() => handleCardClick(cardValues[card.toString()])}
+                  className="card-button"
+                  id={card === "A" ? "ace" : null}
+                >
+                  {card}
+                </button>
+              </div>
+            </>
           ))}
         </div>
+        <div id="stats">
+        <label htmlFor="shoes">Shoes:</label>
+        <input
+            id="shoes"
+            type="number"
+            value={shoes}
+            onChange={handleShoesChange}
+            className="shoes-input"
+          />
+        <h2>Stats:</h2>
+          <p>Count: {count}</p>
+          <p>Running Count: {runningCount}</p>
+          <p>Cards Remaining: {cardsRemaining}</p>
+          
+          
         </div>
-        )
-  }
+        </div>
+        <div className="right-side-content">
+        <h2>Card History:</h2>
+        <ul>
+          <p>HELLO WORLD!!!!</p>
+        </ul>
+        </div>
+      </div>
+  );
+    
+        
+        }
+
 export default CardCounterPage;
